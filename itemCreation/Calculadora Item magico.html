@@ -1,0 +1,101 @@
+<html>
+  <head>
+    <title>Calculadora de Item Mágico</title>
+    <script src="calculadora.js"></script>
+    <link rel="stylesheet" href="estiloDaCalculadora.css">
+    <link href="https://fonts.googleapis.com/css?family=Libre+Baskerville:700" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <div class="stat-block" style="position: relative;">
+      <hr class="orange-border" />
+        <div class="creature-heading">
+            <h1>Calculadora de Item Magico</h1>
+            <div class="line">
+              <button type="button" class="rarity common-btn rarity-btn" id="common" onclick="rarity = 'Common'">Comum,</button>
+              <button type="button" class="rarity uncomon-btn rarity-btn" id="uncomon" onclick="rarity = 'Uncomon'">Incomum,</button>
+              <button type="button" class="rarity rare-btn rarity-btn" id="rare" onclick="rarity = 'Rare'">Raro,</button>
+              <button type="button" class="rarity veryrare-btn rarity-btn" id="very-rare" onclick="rarity = 'Very rare'">Muito raro,</button>
+              <button type="button" class="rarity legendary-btn rarity-btn" id="legendary"onclick="rarity = 'Legendary'">Lendario.</button>
+            </div>
+        <div>
+          <form>
+              <div class="line property-line" style="margin-bottom: -10px;">
+                <h4>Nome do item:</h4>
+                <input type="text" placeholder="Digite o nome do item..." id="name" name="name" >
+              </div>  
+            </div>
+          <div class="line property-line">
+            <h4>Valor:</h4>
+            <input type="text" placeholder="Valor em PO ou PP..." id="value" name="value"><br>
+          </div>
+          <div style="margin-bottom: 10px;">    
+            <span id="result"></span>
+          </div><br>
+          <button id="calc-btn" type="button" onclick="showResult()">
+            <!--<img id="forge-btn" src="Icones/Forge.png" alt="Ícone de forja">-->
+            <img id="forge-btn" src="Icones/ForgePreto.png" alt="Ícone de forja">
+          </button>
+            </div>
+          </form>
+      <hr class="orange-border bottom" />
+    </div>
+    <script>
+      let rarity = null;
+      function showResult() { // Recebe os valores do usario e chama o metodo par realizar os calculos
+        const name = document.getElementById("name").value;
+        const value = document.getElementById("value").value;
+        if (rarity === null) { // Verifica se o usuario selecionou uma raridade 
+          document.getElementById("result").textContent = "Por favor, selecione a raridade do item.";
+          return;
+        } 
+        const result = calculateMagicItem(rarity, name, value);
+        document.getElementById("result").textContent = result;
+      }
+    </script>
+    <script>
+      function removeBackground() {
+        const botoes = document.querySelectorAll('.rarity');
+        for (let i = 0; i < botoes.length; i++) {
+          botoes[i].style.color = '';
+        }
+      }
+      document.querySelector('#common').addEventListener('click', function() {
+        removeBackground();
+        this.style.color = '#BFBFBF'; // Muda a cor de fundo ao clicar
+      });
+      document.querySelector('#uncomon').addEventListener('click', function() {
+        removeBackground();
+        this.style.color = '3BAA3C'; // Muda a cor de fundo ao clicar
+      });
+      document.querySelector('#rare').addEventListener('click', function() {
+        removeBackground();
+        this.style.color = '3C82AA'; // Muda a cor de fundo ao clicar
+      });
+      document.querySelector('#very-rare').addEventListener('click', function() {
+        removeBackground();
+        this.style.color = '9F3CAA'; // Muda a cor de fundo ao clicar
+      });
+      document.querySelector('#legendary').addEventListener('click', function() {
+        removeBackground();
+        this.style.color = 'FFA500'; // Muda a cor de fundo ao clicar
+      });
+    </script>
+    <script>
+      const meuBotao = document.getElementById('calc-btn');
+      const imagemBotao = document.getElementById('forge-btn');
+
+      // Troca a imagem do botão ao passar o mouse sobre a imagem
+      imagemBotao.onmouseover = function() {
+        this.src = 'Icones/ForgeVermelho.png';
+        this.style.transition = 'all 0.5s';
+      }
+
+      // Troca a imagem de volta ao retirar o mouse da imagem
+      imagemBotao.onmouseout = function() {
+        this.src = 'Icones/ForgePreto.png';
+        this.style.transition = 'all 0.5s';
+      }
+    </script>
+  </body>
+</html>
