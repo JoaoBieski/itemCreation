@@ -29,8 +29,8 @@ function calculateMagicItem(rarity, name, value) { // Realiza o calculo
       break;
   }
   let multiplier = value;
-  multiplierMinutes = multiplier / 60;
-time = po * multiplierMinutes * 60;
+  
+time = po * multiplier * 60;
 //converte o valor para semanas, dias, horas ou minutos
 const days = Math.floor(time / (8 * 60 * 60)); // 8 horas por dia
 const hours = Math.floor((time % (8 * 60 * 60)) / (60 * 60));
